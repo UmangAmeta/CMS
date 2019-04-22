@@ -1,0 +1,88 @@
+﻿@model callmonitaringsystem2.Models.Cms_Department
+
+@{
+    Layout = "~/Views/View.cshtml";
+}
+<style>
+    .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+        border: 1px solid #efe6e6;
+        color: black;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<body style="padding-top:20px">
+
+    @using (Html.BeginForm("Adddepartment", "Cms", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="col-md-10 col-md-offset-1">
+        <div class="well">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="success">
+                        <td colspan="2">
+                            <h2><i class="glyphicon glyphicon-log-in"></i> Add Department</h2>
+
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <b> Departmentname:</b>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.Cms_Departmentname, new { @class = "form-control", placeholder = "Department name" })
+                            @Html.ValidationMessageFor(m => m.Cms_Departmentname, "", new { @class = "text-danger" })
+                        
+                        </td>
+                    </tr>
+
+
+                    <tr class="success">
+                        <td colspan="2">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"></label>
+                                <div class="col-md-4">
+                                    <br>
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAdd <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+    }
+</body>
+@if (ViewBag.message != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.message");
+        };
+    </script>
+}
+else if (ViewBag.Error != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Error");
+        };
+    </script>
+
+}
+else if (ViewBag.Success != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Success");
+        };
+    </script>
+}

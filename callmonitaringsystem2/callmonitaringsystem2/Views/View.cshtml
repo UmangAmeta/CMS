@@ -1,0 +1,145 @@
+﻿
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/admintemplate.css" rel="stylesheet" />
+<style>
+    body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #ece3e3;
+    background-color: #ffffff;
+}
+.text-xs-center {
+    text-align: center!important;
+}
+	p.capitalize,label {
+    text-transform: capitalize;
+     letter-spacing: 2px;
+     word-spacing: 6px;
+     color: Gray ;
+     }
+     h2{
+     color:midnightblue ;
+     }
+     .footer-bottom {
+    background-color: #15224f;
+    min-height: 30px;
+    width: 100%;
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+div {
+    display: block;
+}
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.col-xs-12 {
+    width: 100%;
+    float: left;
+}
+ .col-xs-12,.col-sm-6, .col-md-6, .col-lg-6{
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-bottom: 0px;
+}
+a {
+    background-color: transparent;
+}
+
+
+</style>
+
+<div class="container-fluid">
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+    <div class="mail-box">
+        <aside class="sm-side">
+            <div class="user-head">
+
+                <div class="user-name">
+                    <h5><a href="#">Alireza Zare</a></h5>
+                    <span><a href="#">Info.Ali.Pci@Gmail.com</a></span>
+                </div>
+
+                <a class="mail-dropdown pull-right" href="javascript:;">
+                    <i class="fa fa-chevron-down">Setting</i>
+                </a>
+            </div>
+            <br />
+            <ul class="inbox-nav inbox-divider">
+                <li class="active">
+                    <a href="@Url.Action("Admin","Cms")"><i class="fa fa-star"></i> Home</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Adddepartment","Cms")"><i class="fa fa-inbox"></i> Add Department</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Adddepartdomain","Cms")"><i class="fa fa-bookmark-o"></i> Department domain</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Addemployee","Cms")"><i class="fa fa-envelope-o"></i> Add Employee</a>
+                </li>
+                <li>
+                    <a href="#"><i class=" fa fa-external-link"></i>View Complain<span class="label label-danger pull-right">2</span></a>
+                </li>
+
+                <li>
+                    <a href="@Url.Action("ViewEmployee","Cms")"><i class=" fa fa-external-link"></i>View Employee<span class="label label-info pull-right">30</span></a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ViewDepartment","Cms")"><i class=" fa fa-external-link"></i>View Department<span class="label label-info pull-right">30</span></a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ViewDepartmentwithdomain","Cms")"><i class=" fa fa-external-link"></i>View Department with Domain<span class="label label-info pull-right">30</span></a>
+                </li>
+             </ul>
+
+        </aside>
+        <aside class="lg-side">
+            <div class="inbox-head">
+                <h3>Inbox</h3>
+                <form action="#" class="pull-right position">
+                    <div class="input-append">
+                        <input type="text" class="sr-input" placeholder="Search Mail">
+                        <button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="inbox-body">
+                <div class="mail-option">
+                    @RenderBody()
+                </div>
+            </div>
+        </aside>
+    </div>
+    <div style="margin-top: 10px" class="footer-bottom">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                    <div class="copyright">
+
+                        © 2017,Call Monitoring System, All rights reserved
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

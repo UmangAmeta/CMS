@@ -1,0 +1,92 @@
+﻿@model callmonitaringsystem2.Models.Cms_Problemdescription
+      
+
+
+@{
+    Layout = "~/Views/View.cshtml";
+}
+<style>
+    .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+        border: 1px solid #efe6e6;
+        color: black;
+    }
+
+   
+
+
+</style>
+<body style="padding-top:20px">
+    @using (Html.BeginForm("Adddepartdomain", "Cms", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="col-md-10 col-md-offset-1">
+            <div class="well">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="success">
+                            <td colspan="2">
+                                <h2><i class="glyphicon glyphicon-log-in"></i>  Department Domain</h2>
+                            </td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+
+                            <td>
+                                <b> Select Department:</b>
+                            </td>
+                            <td class="form-group">
+                                @Html.DropDownListFor(m => m.Cms_Departmentid, Model.Departmentname, "Select Department", new { @class = "form-control selectpicker" })
+                                @Html.ValidationMessageFor(m => m.Cms_Departmentid, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <b> Problem Domain:</b>
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.Cms_Problemdomain, new { @class = "form-control", placeholder = "Department name" })
+                                @Html.ValidationMessageFor(m => m.Cms_Problemdomain, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+
+
+                        <tr class="success">
+                            <td colspan="2">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label"></label>
+                                    <div class="col-md-4">
+                                        <br>
+                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAdd <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    }
+</body>
+@if (ViewBag.Error != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Error");
+        };
+    </script>
+
+}
+else if(ViewBag.Success != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Success");
+            ModelState.Clear();
+        };
+    </script>
+}

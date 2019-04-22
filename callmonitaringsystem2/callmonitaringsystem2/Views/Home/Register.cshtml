@@ -1,0 +1,144 @@
+﻿@model callmonitaringsystem2.Models.Cms_User
+<style>
+    body {
+        background-color: #eee;
+    }
+
+    *[role="form"] {
+        max-width: 800px;
+        padding: 100px;
+        margin: 0 auto;
+        margin-top:80px;
+        background-color: lightblue;
+        border-radius: 0.3em;
+    }
+
+        *[role="form"] h2 {
+            margin-left: 5em;
+            margin-bottom: 1em;
+        }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script type="text/javascript">
+    function validate(key) {
+
+        var keycode = (key.which) ? key.which : key.keyCode;
+        var phn = document.getElementById('textbox2');
+
+        if (!(keycode == 8 || keycode == 46) && (keycode < 48 || keycode > 57)) {
+            return false;
+        }
+        else {
+            if (phn.value.length < 10) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+</script>
+
+<div class="container">
+
+    @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h2>Registration Form</h2>
+        <div class="form-group">
+
+            <label for="firstName" class="col-sm-3 control-label">Full Name</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(m => m.User_Name, new { @class = "form-control", placeholder = "Full Name" })
+                @Html.ValidationMessageFor(m => m.User_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-3 control-label">Email</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(m => m.User_Email, new {type="Email",  @class = "form-control", placeholder = "Email" })
+                @Html.ValidationMessageFor(m => m.User_Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phoneno" class="col-sm-3 control-label">Phoneno</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(m => m.User_Phoneno, new { @class = "form-control", placeholder = "phone no", id = "textbox2", onkeypress = "return validate(event)" })
+                @Html.ValidationMessageFor(m => m.User_Phoneno, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="birthDate" class="col-sm-3 control-label">Date of Birth</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(m => m.User_Dob, new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(m => m.User_Dob, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Gender</label>
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(m => m.User_Gender, "Female")Female
+                            @Html.ValidationMessageFor(m => m.User_Gender, "", new { @class = "text-danger" })
+                        </label>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(m => m.User_Gender, "Male")Male
+
+                        </label>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(m => m.User_Gender, "Other")Other
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">Password</label>
+
+            <div class="col-sm-9">
+                @Html.TextBoxFor(m => m.User_Password, new { type = "password", placeholder = "Password", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.User_Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3">
+                <button type="submit" class="btn btn-primary btn-block" id="btnregister">Register</button>
+            </div>
+        </div>
+    }
+    @if (ViewBag.message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.message");
+            };
+        </script>
+    }
+    else if (ViewBag.Error != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Error");
+            };
+        </script>
+
+    }
+    else if (ViewBag.Success != null) 
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Success");
+            };
+        </script>
+    }
+</div>

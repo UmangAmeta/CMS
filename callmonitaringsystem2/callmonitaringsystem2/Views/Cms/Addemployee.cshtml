@@ -1,0 +1,237 @@
+﻿@model callmonitaringsystem2.Models.Cms_Employee
+@{
+    Layout = "~/Views/View.cshtml";
+}
+
+
+<style>
+     .input-group-addon {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    text-align: center;
+    background-color: #e24c4c;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+</style>
+
+<link href="~/Content/Addemployee.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script type="text/javascript">
+    function validate(key) {
+
+        var keycode = (key.which) ? key.which : key.keyCode;
+        var phn = document.getElementById('textbox2');
+
+        if (!(keycode == 8 || keycode == 46) && (keycode < 48 || keycode > 57)) {
+            return false;
+        }
+        else {
+            if (phn.value.length < 10) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+
+
+    function revalidate(key) {
+
+        var keycode = (key.which) ? key.which : key.keyCode;
+        var phn = document.getElementById('textbox3');
+
+        if (!(keycode == 8 || keycode == 46) && (keycode < 48 || keycode > 57)) {
+            return false;
+        }
+        else {
+            if (phn.value.length < 12) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+</script>
+<div class="container">
+@using (Html.BeginForm("Addemployee", "Cms", FormMethod.Post, new { @class = " well form-horizontal", role = "form",id="contact_form" }))
+    {
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+           <fieldset>
+
+            <!-- Form Name -->
+            <legend><center><h2><b>Registration Form</b></h2></center></legend><br>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Aadharno</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-new-window"></i></span>
+                        @Html.TextBoxFor(m => m.Employee_Addharno, new { @class = "form-control", type = "text", placeholder = "Aadhar no", id = "textbox3", onkeypress = "return revalidate(event)" })
+                        @Html.ValidationMessageFor(m => m.Employee_Addharno, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Full Name</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.TextBoxFor(m => m.Employee_Name, new { @class = "form-control", type = "text", placeholder = "Enter Name" })
+                        @Html.ValidationMessageFor(m => m.Employee_Name, "", new { @class = "text-danger" })                    
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Dob</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.TextBoxFor(m => m.Employee_Dob, new { @class = "form-control", type = "date", placeholder = "mm/dd/yyyy" })
+                        @Html.ValidationMessageFor(m => m.Employee_Dob, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Gender</label>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                @Html.RadioButtonFor(m => m.Employee_Gender, "Female")Female
+                                @Html.ValidationMessageFor(m => m.Employee_Gender, "", new { @class = "text-danger" })
+                               
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                @Html.RadioButtonFor(m => m.Employee_Gender, "Male")Male
+
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">E-Mail</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        @Html.TextBoxFor(m => m.Employee_Email, new { @class = "form-control", placeholder = "E-Mail Address", type = "Email" })
+                        @Html.ValidationMessageFor(m => m.Employee_Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Contact No.</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                        @Html.TextBoxFor(m => m.Employee_Phone, new { @class = "form-control", type = "phone", placeholder = "+91-012366556", id = "textbox2", onkeypress = "return validate(event)" })
+                        @Html.ValidationMessageFor(m => m.Employee_Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Employeement type</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        @Html.DropDownListFor(m => m.Employee_type, new List<SelectListItem>
+                   {
+                      new SelectListItem{ Text="Hod", Value = "Hod" },
+                    new SelectListItem{ Text="Supervisor", Value = "Supervisor" },
+                    new SelectListItem{Text="Worker",Value="Worker"}
+                   }, "Select Employeement", new { @class = "form-control selectpicker" })
+                        @Html.ValidationMessageFor(m => m.Employee_type, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Department / Office</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        @Html.DropDownListFor(m => m.Employee_Departmentid, Model.Departmentname, "Select Department", new { @class = "form-control selectpicker" })
+                        @Html.ValidationMessageFor(m => m.Employee_Departmentid, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Password</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.TextBoxFor(m => m.Employee_Password, new { @class = "form-control", type = "password", placeholder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Employee_Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+
+            
+            <!-- Select Basic -->
+            <!-- Success message -->
+            <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Success!.</div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <br>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                </div>
+            </div>
+
+        </fieldset>
+}
+</div>
+@if (ViewBag.message != null)
+    {
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.message");
+            };
+    </script>
+    }
+    else if (ViewBag.Error != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Error");
+            };
+        </script>
+
+    }
+    else if (ViewBag.Success != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Success");
+               
+            };
+        </script>
+    }
